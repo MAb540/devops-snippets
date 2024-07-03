@@ -1,0 +1,55 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  sam-app-test
+  Sample SAM Template for sam-app
+
+
+Globals:
+  Function:
+    Timeout: 3
+
+    # You can add LoggingConfig parameters such as the Logformat, Log Group, and SystemLogLevel or ApplicationLogLevel. Learn more here https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-loggingconfig.
+    LoggingConfig:
+      LogFormat: JSON
+
+Resources:
+  ScrapFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: scrap/
+      Handler: index.handler
+      Runtime: python3.10
+      Architectures:
+      - x86_64
+
+  TrapFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: trap/
+      Handler: index.handler
+      Runtime: python3.10
+      Architectures:
+      - x86_64
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+
+  ScrapFunction:
+    Description: Scrap Lambda Function ARN
+    Value: !GetAtt ScrapFunction.Arn
+  ScrapFunctionIamRole:
+    Description: Implicit IAM Role created for Scrap function
+    Value: !GetAtt ScrapFunctionRole.Arn
+  
+
+  TrapFunction:
+    Description: Trap Lambda Function ARN
+    Value: !GetAtt TrapFunction.Arn
+  TrapFunctionIamRole:
+    Description: Implicit IAM Role created for Trap function
+    Value: !GetAtt TrapFunctionRole.Arn
+
+
