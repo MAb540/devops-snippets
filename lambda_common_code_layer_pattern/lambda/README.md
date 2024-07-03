@@ -7,5 +7,7 @@ template.yml is cloudformation template, it is needed in order to test lambda fu
 https://docs.aws.amazon.com/lambda/latest/dg/layers-sam.html
 
 ## Example to test lambda functions locally with AWS SAM
+```
 sam local invoke ScrapFunction -e event.json
 sam local invoke TrapFunction -e event.json
+```
