@@ -1,0 +1,8 @@
+myhosts:
+  hosts:
+    localhost:
+      ansible_host: localhost
+      ansible_port: 4006
+      ansible_user: username
+      ansible_key_file: ~/Programming/ansible/ansible_local_cont
+      ansible_python_interpreter: /usr/bin/python3.12
